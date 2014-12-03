@@ -8,13 +8,18 @@
 </head>
 <body>
 <div id="top-menu-wrap">
-        <div>
-            <p>Bloge</p>
-        </div>
+    <p>Bloge</p>
+    <ul class="menu">
+        <li><a href="/posts">Main</a></li>
+        <li><a href="#">My profile</a></li>
+        <li>
+        {% block loginout %}
+        {% endblock %}</li>
+    </ul>
 </div>
 <div id="content">
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 </div>
 </body>
 </html>
