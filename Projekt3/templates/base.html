@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:bold" rel="stylesheet" type="text/css">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "style.css" %}"/>
+</head>
+<body>
+<div id="top-menu-wrap">
+        <div>
+            <p>Bloge</p>
+        </div>
+</div>
+<div id="content">
+{% block content %}
+{% endblock %}
+</div>
+</body>
+</html>
