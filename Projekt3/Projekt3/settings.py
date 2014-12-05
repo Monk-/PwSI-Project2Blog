@@ -87,4 +87,9 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
 
+SESSION_COOKIE_AGE = 360
+
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
+KEEP_LOGGED_KEY                   = 'keep_me_logged' # session key
+KEEP_LOGGED_DURATION              = 365         # in days
