@@ -1,20 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-    {% for post in posts %}
+   {% for post in posts %}
         <h2><a href="./{{ post.get_username }}">{{ post.get_full_name}}</a></h2>
     {% endfor %}
 {% endblock %}
 
 {% block Menu %}
-    {% if not request.user.is_authenticated %}
-      <li>  <a href="/posts/login">Login</a> </li>
-      <li>  <a href="/posts/register/">Register</a></li>
-    {% endif %}
-
-{% if request.user.is_authenticated %}
-        <li><a href="/posts">Main</a></li>
-        <li><a href="#">My profile</a></li>
-        <li><a href="/posts/logout">logout</a></li>
-    {% endif %}
+       <li><a href="/posts">Main</a></li>
+        <li><a href="/posts/profile"><!---{{user.get_username}}"-->My profile</a></li>
+        <li><a href="/posts/logout">Logout</a></li>
 {% endblock %}
 

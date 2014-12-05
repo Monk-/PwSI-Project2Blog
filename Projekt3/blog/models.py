@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.views.generic import DetailView
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
@@ -20,3 +22,4 @@ class Blog(models.Model):
 class Category(models.Model):
     title = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100, db_index=True)
+

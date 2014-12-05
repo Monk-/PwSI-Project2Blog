@@ -1,18 +1,20 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, render_to_response
+from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.shortcuts import render, render_to_response, get_object_or_404
 from django.template import loader, Context, RequestContext
-from django.contrib.auth import authenticate, login,logout
+from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.views.decorators.csrf import csrf_protect
+from django.views.generic import DetailView, View
+from Projekt3.forms import MyRegistrationForm
 
 
 @csrf_protect
 def loginn(request):
     c = {}
     c.update(csrf(request))
-    return render_to_response("login/login.html",c)
+    return render_to_response("login/login.html", c)
 
 
 @csrf_protect
@@ -29,8 +31,13 @@ def auth_view(request):
 
 def all_users(request):
     users = User.objects.all()
-    t = loader.get_template("main.html")
-    c = Context({'posts':users})
+    if request.user.is_authenticated():
+        user = User.objects.get_by_natural_key(request.user.get_username())
+        t = loader.get_template("main.html")
+        c = Context({'posts': users, 'user': user})
+    else:
+        t = loader.get_template("main1.html")
+        c = Context({'posts': users})
     return HttpResponse(t.render(c))
 
 
@@ -41,23 +48,30 @@ def loggedin(request):
 def invalid_login(request):
     return render_to_response('login/invalid_login.html')
 
-def logout(request):
+def logout_view(request):
     logout(request)
     return render_to_response('login/logout.html')
 
 def register_user(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = MyRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/posts/registration_success')
     args ={}
     args.update(csrf(request))
-    args['form'] = UserCreationForm()
+    args['form'] = MyRegistrationForm()
     print(args)
-    return render_to_response('registration/register.html',args)
+    return render_to_response('registration/register.html', args)
 
 def register_success(request):
     return render_to_response('registration/registration_success.html')
 
-
+def profile(request):
+    if request.user.is_authenticated():
+        user = User.objects.get_by_natural_key(request.user.get_username())
+        t = loader.get_template("profile.html")
+        c = Context({'user2': user} )
+        return HttpResponse(t.render(c))
+    else:
+        raise Http404

@@ -4,14 +4,6 @@
  {% endblock %}
 
 {% block Menu %}
-    {% if not user.is_authenticated %}
       <li>  <a href="/posts/login">Login</a> </li>
       <li>  <a href="/posts/register/">Register</a></li>
-    {% endif %}
-
-{% if user.is_authenticated %}
-        <li><a href="/posts">Main</a></li>
-        <li><a href="#">My profile</a></li>
-        <li><a href="/posts/logout">logout</a></li>
-    {% endif %}
 {% endblock %}
