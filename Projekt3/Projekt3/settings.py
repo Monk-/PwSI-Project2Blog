@@ -26,7 +26,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+# to see custom error page runserver --insecure ; ALLOWED_HOSTS = ['*'] DEBUG = False
 # Application definition
 
 INSTALLED_APPS = (

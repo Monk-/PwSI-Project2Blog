@@ -1,12 +1,10 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import render, render_to_response, get_object_or_404
+from django.shortcuts import render, render_to_response
 from django.template import loader, Context, RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 from django.views.decorators.csrf import csrf_protect
-from django.views.generic import DetailView, View
 from Projekt3.forms import MyRegistrationForm
 
 
@@ -25,7 +23,7 @@ def auth_view(request):
     if user is not None:
         if user.is_active:
             login(request, user)
-            return render_to_response('login/loggedin.html',RequestContext(request))
+            return render_to_response('login/loggedin.html', RequestContext(request))
     else:
         return HttpResponseRedirect('/posts/invalid')
 
@@ -43,14 +41,16 @@ def all_users(request):
 
 def loggedin(request):
     return render_to_response('login/loggedin.html',
-                                 {'full_name' : request.user.username})
+                                 {'full_name': request.user.username})
 
 def invalid_login(request):
     return render_to_response('login/invalid_login.html')
 
 def logout_view(request):
     logout(request)
-    return render_to_response('login/logout.html')
+    t = loader.get_template("login/logout.html")
+    c = Context()
+    return HttpResponse(t.render(c))
 
 def register_user(request):
     if request.method == 'POST':
@@ -75,3 +75,20 @@ def profile(request):
         return HttpResponse(t.render(c))
     else:
         raise Http404
+
+#errors---
+def handler404(request):
+    return render(request, 'errors/404.html')
+
+def handler500(request):
+    return render(request, 'errors/500.html')
+
+def handler403(request):
+    return render(request, 'errors/403.html')
+
+def handler400(request):
+    return render(request, 'errors/400.html')
+
+def handler401(request):
+    return render(request, 'errors/401.html')
+#-----
