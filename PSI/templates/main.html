@@ -1,0 +1,19 @@
+{% extends "base_1.html" %}
+
+{% block header %}
+    <h1 class="page-header">
+            {% block title %} Welcome to my blog {% endblock %}
+{#            <small>Secondary Text</small>#}
+        </h1>
+{% endblock %}
+
+{% block Menu %}
+       <li class="active"> <a href="/posts">Main</a> </li>
+            <ul class="nav navbar-nav navbar">
+                <li><a href="/posts/profile"><!---{{user.get_username}}"-->My profile</a></li>
+                <li><a href="/posts/logout">Logout</a></li>
+
+            </ul>
+
+{% endblock %}
+

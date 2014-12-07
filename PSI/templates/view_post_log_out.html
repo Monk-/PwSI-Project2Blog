@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1 class="page-header">
+            {% block title %}{{ post.title }} {% endblock %}
+{#            <small>Secondary Text</small>#}
+        </h1>
+{% endblock %}
+
+
+{% block Menu %}
+       <li class="active"> <a href="/posts">Main</a> </li>
+            <ul class="nav navbar-nav navbar">
+                <li>  <a href="/posts/login">Login</a> </li>
+                <li>  <a href="/posts/register/">Register</a></li>
+            </ul>
+
+
+{% endblock %}
+
+
+{% block content %}
+    <p>
+        <span class="glyphicon glyphicon-time"></span>
+     {{ post.timestamp|date:"N d, Y" }}
+    </p>
+
+        <p>{{ post.content }}</p>
+
+
+{% endblock %}
+
+
+{% block vertical_navbar %}
+                <div class="well">
+                  <h4><b>Category</b></h4>
+                    <div class="row">
+                    <div class="col-lg-12">
+                        {% for category in post.categories.all %}
+                                {% if forloop.counter >= 2 %}  :{% endif %}
+                        <a href='{{ category.get_absolute_url }}'> <p > {{ category.title }}</p> </a>
+                            <p > {{ category.description }}</p>
+                        {% endfor %}
+                    </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+                <div class="well">
+                    <h4>Post Description</h4>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            {{ post.description }}
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+                        <!-- Side Widget Well -->
+                <div class="well">
+                    <h4>About Author : {{ post.author }}</h4>
+                        <p>TUTAJ KROTKI OPIS AUTORA</p>
+                    </div>
+
+{% endblock %}
+
+
+{#    {{ post.body }}#}
+{#{% endblock %}#}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+ {% block content %}
+     <h2>Hi {{ full_name}} you are now logged in!</h2>
+     <p>Click <a href="/posts">here </a> to go to main page</p>
+ {% endblock %}
+
+{% block Menu %}
+    {% if not user.is_authenticated %}
+      <li>  <a href="/posts/login">Login</a> </li>
+      <li>  <a href="/posts/register/">Register</a></li>
+    {% endif %}
+
+{% if user.is_authenticated %}
+        <li><a href="/posts">Main</a></li>
+        <li><a href="/posts/profile">My profile</a></li>
+        <li><a href="/posts/logout">logout</a></li>
+    {% endif %}
+{% endblock %}

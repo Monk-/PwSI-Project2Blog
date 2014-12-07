@@ -1,0 +1,77 @@
+
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1 class="page-header">
+           {% block title %} Category:  <b  class="text-primary">{{ category.title }}</b> {% endblock %}
+        </h1>
+{% endblock %}
+
+
+{% block Menu %}
+       <li class="active"> <a href="/posts">Main</a> </li>
+            <ul class="nav navbar-nav navbar">
+                <li><a href="/posts/profile"><!---{{user.get_username}}"-->My profile</a></li>
+                <li><a href="/posts/logout">Logout</a></li>
+
+            </ul>
+
+{% endblock %}
+
+
+{% block content %}
+    <p>
+        {% for post in posts %}
+            <a href='{{ post.get_absolute_url }}'> <h3><b> {{ post.title }}</b></h3>
+            </a>
+                    {{ post.timestamp | date:"N d, Y" }} |  Author: {{ post.author }} | Categories:
+                         {% for category in post.categories.all %}
+                            {% if forloop.counter >= 2 %}  |{% endif %}
+                                <a href='{{ category.get_absolute_url }}'> {{ category.title }}</a>
+                         {% endfor %}
+
+                        <p>{{ post.description }}</p>
+
+                        <a href='{{ post.get_absolute_url }}'>Read More</a>
+                        <br><br>
+
+             {% endfor %}
+
+{#        <span class="glyphicon glyphicon-time"></span>#}
+{#     {{ post.timestamp|date:"N d, Y" }} | Category:#}
+{#        {% for category in post.categories.all %}#}
+{#            {% if forloop.counter >= 2 %}  :{% endif %}#}
+{#            <a href='{{ category.get_absolute_url }}'>{{ category.title }}</a>#}
+{#        {% endfor %}#}
+
+{##}
+{#        <p>{{ post.content }}</p>#}
+    </p>
+
+
+{% endblock %}
+
+
+{% block vertical_navbar %}
+                <div class="well" >
+                  <h4 class="text-primary" ><b>About Category</b></h4>
+                    <div class="row">
+                        <div class="col-lg-12" >
+                            {{ category.description}}
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+
+                <div class="well">
+                    <h4><b>About Authors</b></h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+                </div>
+
+{% endblock %}
+
+
+{#    {{ post.body }}#}
+{#{% endblock %}#}

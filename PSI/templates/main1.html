@@ -1,0 +1,43 @@
+{% extends "base_1.html" %}
+
+{% block header %}
+    <h1 class="page-header">
+            {% block title %} Welcome to my blog {% endblock %}
+{#            <small>Secondary Text</small>#}
+        </h1>
+{% endblock %}
+
+
+{% block content %}
+
+    <p>
+        {% for post in posts %}
+            <a href='{{ post.get_absolute_url }}'> <h3><b> {{ post.title }}</b></h3>
+            </a>
+                    {{ post.timestamp | date:"N d, Y" }} |  Author: {{ post.author }} | Categories:
+                         {% for category in post.categories.all %}
+                            {% if forloop.counter >= 2 %}  |{% endif %}
+                                <a href='{{ category.get_absolute_url }}'> {{ category.title }}</a>
+                         {% endfor %}
+
+                        <p>{{ post.content }}</p>
+
+
+                        <br><br>
+
+             {% endfor %}
+    </p>
+
+{% endblock %}
+
+
+
+{% block Menu %}
+     <li class="active"> <a href="/posts">Main</a> </li>
+            <ul class="nav navbar-nav navbar">
+                <li>  <a href="/posts/login">Login</a> </li>
+                <li>  <a href="/posts/register/">Register</a></li>
+            </ul>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+ {% block content %}
+     <h2>Your login details are invalid!</h2>
+     <p>Click <a href="/posts/login/">here </a> to try again</p>
+ {% endblock %}
+
+{% block Menu %}
+    {% if not user.is_authenticated %}
+      <li>  <a href="/posts/login">Login</a> </li>
+      <li>  <a href="/posts/register/">Register</a></li>
+    {% endif %}
+
+{% if user.is_authenticated %}
+        <li><a href="/posts">Main</a></li>
+        <li><a href="#">My profile</a></li>
+        <li><a href="/posts/logout">logout</a></li>
+    {% endif %}
+{% endblock %}

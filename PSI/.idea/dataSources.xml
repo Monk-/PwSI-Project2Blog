@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="330362486">
+    <data-source source="LOCAL" name="Django default" uuid="2a09daf8-c019-436c-85c2-285c3d1bbb4f">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:F:\Dropbox\Dropbox\PSI\db.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

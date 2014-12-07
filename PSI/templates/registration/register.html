@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+
+
+{% block Menu %}
+     <li class="active"> <a href="/posts">Main</a> </li>
+            <ul class="nav navbar-nav navbar">
+                 <li> <a href="/posts/login">Login</a> </li>
+            </ul>
+{% endblock %}
+
+{% block title %}Create an account{% endblock %}
+
+{% block content %}
+
+<div class="container">
+        <div class="row centered-form">
+            <div class="col-md-10 col-md-offset-0">
+        	    <div class="panel panel-default">
+        		        <div class="panel-heading">
+			    		    <h3 class="panel-title"> <b>Create an account</b></h3>
+			 	        </div>
+			 	    <div class="panel-body">
+                        <form action="/posts/register/" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                                {{ user_form.as_p }}
+                                {{ profile_form.as_p }}
+                            <input type="submit" class="btn btn-info btn-block" value="Create the account" >
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

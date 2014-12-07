@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <h1 class="page-header">
+            {% block title %}  {{ user2.get_username }}'s Profile {% endblock %}
+    </h1>
+{% endblock %}
+
+{% block content %}
+    <div id="w">
+    <div id="content1" class="clearfix">
+    <!-- <div id="userphoto"><img src="images/avatar.png" alt="default avatar"></div> --->
+
+    <section id="activity" >
+         <p class="activity"> <img src={{ image }}></p>
+        <p class="activity">Username - {{ user2.get_username }}</p>
+
+        <p class="activity">Full name - {{ user2.get_full_name }}</p>
+
+        <p class="activity">Email - {{ user2.email }}</p>
+
+        <p class="activity">Staff - {% if user2.is_staff %}Yep{% endif %}{% if not user2.is_staff %}Nope{% endif %}</p>
+
+    </section>
+    </div>
+    </div>
+{% endblock %}
+
+{% block Menu %}
+    <li class="active"> <a href="/posts">Main</a> </li>
+    <li><a href="/posts/logout">Logout</a></li>
+{% endblock %}
