@@ -87,4 +87,4 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
 MEDIA_URL = '/profile_images/'
-MEDIA_ROOT = 'F:\Dropbox\Dropbox\PSI'
+MEDIA_ROOT = 'F:/Dropbox/Dropbox/PSI/profile_images'
