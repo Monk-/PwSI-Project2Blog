@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1 class="page-header">
+            {% block title %} <b style="color: #4673a3"> Add New Category </b> {% endblock %}
+
+        </h1>
+{% endblock %}
+
+
+{% block Menu %}
+       <li class="active"> <a href="/posts">Main</a> </li>
+                <li><a href="/posts/profile"><!---{{user.get_username}}"-->My profile</a></li>
+                <li><a href="/posts/logout">Logout</a></li>
+
+{% endblock %}
+
+
+{% block content %}
+
+    <form role="form" action="" method="post" class="post-form">
+        {% csrf_token %}
+        	<div class="form-group" style="width: 100%">
+                {% load widget_tweaks %}
+                {% render_field form.title class+="form-control" placeholder+="Title: "%}
+                {% render_field form.description rows="3" class+="form-control" placeholder+="Description: "%}
+{#                {% render_field form.content rows="3" class+="form-control" placeholder+="Content: "%}#}
+{#                {% render_field form.categories  rows="1" class+="form-control" placeholder+="Categories: "%}#}
+            </div>
+        <button input type="submit" name="add" value="Add" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

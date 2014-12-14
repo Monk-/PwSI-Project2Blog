@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block  blog_post %}
                {% if form.errors %}
                   <p class="error">Sorry , that's not a valid username or password</p>
                {% endif %}
@@ -34,9 +34,9 @@
 {% block Menu %}
 
     <li class="active"> <a href="/posts">Main</a> </li>
-            <ul class="nav navbar-nav navbar">
+
                 <li>  <a href="/posts/register/">Register</a></li>
 
-            </ul>
+
 
 {% endblock %}

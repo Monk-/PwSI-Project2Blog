@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'blog',
 )
 
@@ -86,5 +87,5 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
-MEDIA_URL = '/profile_images/'
-MEDIA_ROOT = 'F:/Dropbox/Dropbox/PSI/profile_images'
+MEDIA_URL = 'profile_images/'
+MEDIA_ROOT = "F:/Dropbox/Dropbox/PSI/profile_images"

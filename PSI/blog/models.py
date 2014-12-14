@@ -1,20 +1,35 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='oser')
-    picture = models.ImageField(upload_to='profile_images', blank=True)
+    picture = models.ImageField(blank=True)
+
     def __unicode__(self):
         return self.user
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('view_profile_author', None , { 'author': self.user })
+
 
 class Category(models.Model):
     title = models.CharField(max_length=65)
     slug = models.SlugField(unique=True)
     description = models.TextField(max_length=155)
 
+    def __str__(self):
+        return self.title
+
     def __unicode__(self):
         return self.title
+
+    def save(self):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Category, self).save()
 
     @models.permalink
     def get_absolute_url(self):
@@ -32,18 +47,26 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     class Meta:
-        ordering = ['-timestamp',]\
+        ordering = ['-timestamp', ]
 
     def __unicode__(self):
         return self.title
 
-    def get_previous_post(self):
-        return self.get_previous_by_timestamp()
-
-    def get_next_post(self):
-        return self.get_next_by_timestamp()
+    def save(self):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Post, self).save()
 
     @models.permalink
     def get_absolute_url(self):
-        return ('view_blog_post', None , {'slug': self.slug})
+        return ('view_blog_post', None, {'slug': self.slug})
 
+
+class Comments(models.Model):
+    body = models.TextField()
+    author = models.ForeignKey(User, related_name= 'upser')
+    timestamp = models.DateTimeField(auto_now=True)
+    post = models.ForeignKey(Post, related_name='comments')
+
+    class Meta:
+        ordering = ('-timestamp',)

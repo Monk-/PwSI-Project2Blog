@@ -2,18 +2,20 @@
 
 {% block header %}
     <h1 class="page-header">
-            {% block title %} Welcome to my blog {% endblock %}
-{#            <small>Secondary Text</small>#}
+{% block title %} Welcome to <b style="color: #4673a3">my blog </b>{% endblock %}
+
         </h1>
 {% endblock %}
 
 {% block Menu %}
-       <li class="active"> <a href="/posts">Main</a> </li>
-            <ul class="nav navbar-nav navbar">
+
+
+                <li class="active"> <a href="/posts">Main</a> </li>
+               <!--- <li><a href="{% url 'blog.views.post_new' %}" ></a></li>-->
                 <li><a href="/posts/profile"><!---{{user.get_username}}"-->My profile</a></li>
                 <li><a href="/posts/logout">Logout</a></li>
 
-            </ul>
+
 
 {% endblock %}
 

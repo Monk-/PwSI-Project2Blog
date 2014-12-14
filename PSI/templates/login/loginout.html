@@ -1,6 +1,8 @@
 {% extends "base.html" %}
  {% block content %}
      <h2>Logged out!</h2>
+{% load staticfiles %}
+<img src="{% static "bunny.png" %}" alt="My image" width="100%"/>
  {% endblock %}
 
 {% block Menu %}

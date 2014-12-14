@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Welcome to my blog {% endblock %}
+{% block title %} Welcome to <b style="color: #4673a3">my blog </b>{% endblock %}
 
 
 {% block content %}
@@ -9,7 +9,7 @@
         {% for post in posts %}
             <a href='{{ post.get_absolute_url }}'> <h3><b> {{ post.title }}</b></h3>
             </a>
-                    {{ post.timestamp | date:"N d, Y" }} |  Author: {{ post.author }} | Categories:
+                    {{ post.timestamp | date:"N d, Y" }} |  Author: <b style="color: #4673a3"> {{ post.author }}</b> | Categories:
                          {% for category in post.categories.all %}
                             {% if forloop.counter >= 2 %}  |{% endif %}
                                 <a href='{{ category.get_absolute_url }}'> {{ category.title }}</a>
@@ -17,8 +17,8 @@
 
                         <p>{{ post.content }}</p>
 
-
-                        <br><br>
+                     <a href='{{ post.get_absolute_url }}' class="btn btn-info btn-block" style="width: 120px">Read More</a>
+                     <br><br>
 
              {% endfor %}
     </p>
@@ -66,7 +66,7 @@
 
                     <!-- Side Widget Well -->
                 <div class="well">
-                    <h4><b class="text-primary">About Authors</b></h4>
+                    <h4><b class="text-primary">About Site</b></h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
                 </div>
 

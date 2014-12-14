@@ -2,9 +2,8 @@
 
 {% block header %}
     <h1 class="page-header">
-            {% block title %} Welcome to my blog {% endblock %}
-{#            <small>Secondary Text</small>#}
-        </h1>
+  {% block title %} Welcome to <b style="color: #4673a3">my blog </b>{% endblock %}
+   </h1>
 {% endblock %}
 
 
@@ -14,16 +13,17 @@
         {% for post in posts %}
             <a href='{{ post.get_absolute_url }}'> <h3><b> {{ post.title }}</b></h3>
             </a>
-                    {{ post.timestamp | date:"N d, Y" }} |  Author: {{ post.author }} | Categories:
+
+
+                    {{ post.timestamp | date:"N d, Y" }} |  Author: <b style="color: #4673a3"> {{ post.author }}</b> </a>| Categories:
                          {% for category in post.categories.all %}
                             {% if forloop.counter >= 2 %}  |{% endif %}
                                 <a href='{{ category.get_absolute_url }}'> {{ category.title }}</a>
                          {% endfor %}
 
                         <p>{{ post.content }}</p>
-
-
-                        <br><br>
+ <a href='{{ post.get_absolute_url }}' class="btn btn-info btn-block" style="width: 120px">Read More</a>
+            <br><br>
 
              {% endfor %}
     </p>
@@ -34,10 +34,10 @@
 
 {% block Menu %}
      <li class="active"> <a href="/posts">Main</a> </li>
-            <ul class="nav navbar-nav navbar">
+
                 <li>  <a href="/posts/login">Login</a> </li>
                 <li>  <a href="/posts/register/">Register</a></li>
-            </ul>
+
     </div>
 {% endblock %}
 

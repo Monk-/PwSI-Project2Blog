@@ -9,12 +9,10 @@
 
 
 {% block Menu %}
-       <li class="active"> <a href="/posts">Main</a> </li>
-            <ul class="nav navbar-nav navbar">
+                <li class="active"> <a href="/posts">Main</a> </li>
                 <li><a href="/posts/profile"><!---{{user.get_username}}"-->My profile</a></li>
                 <li><a href="/posts/logout">Logout</a></li>
 
-            </ul>
 
 {% endblock %}
 
@@ -32,20 +30,10 @@
 
                         <p>{{ post.description }}</p>
 
-                        <a href='{{ post.get_absolute_url }}'>Read More</a>
-                        <br><br>
+                      <a href='{{ post.get_absolute_url }}' class="btn btn-info btn-block" style="width: 120px">Read More</a>
+        {% endfor %}
 
-             {% endfor %}
 
-{#        <span class="glyphicon glyphicon-time"></span>#}
-{#     {{ post.timestamp|date:"N d, Y" }} | Category:#}
-{#        {% for category in post.categories.all %}#}
-{#            {% if forloop.counter >= 2 %}  :{% endif %}#}
-{#            <a href='{{ category.get_absolute_url }}'>{{ category.title }}</a>#}
-{#        {% endfor %}#}
-
-{##}
-{#        <p>{{ post.content }}</p>#}
     </p>
 
 
@@ -66,7 +54,7 @@
 
 
                 <div class="well">
-                    <h4><b>About Authors</b></h4>
+                    <h4><b>About Site</b></h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
                 </div>
 

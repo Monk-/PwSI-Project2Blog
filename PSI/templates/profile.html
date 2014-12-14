@@ -1,32 +1,69 @@
 {% extends "base.html" %}
 
-{% block header %}
-    <h1 class="page-header">
+{% block ALL %}
+<div class="container">
+{% block blog_post %}
+
+<div class="col-md-6">
+    {% block header %}
+        <h1 class="page-header">
             {% block title %}  {{ user2.get_username }}'s Profile {% endblock %}
-    </h1>
+        </h1>
+    {% endblock %}
+
+    <div class="col-md-12">
+        <div class="well">
+            {% block content %}
+                <div id="content1" class="clearfix">
+                    <section id="activity" >
+                        <p class="activity"><b>Username</b> - {{ user2.get_username }}</p>
+                        <p class="activity"><b>Full name</b> - {{ user2.get_full_name }}</p>
+                        <p class="activity"><b>Email</b> - {{ user2.email }}</p>
+                        <p class="activity"><b>Staff</b> - {% if user2.is_staff %}Yep{% endif %}{% if not user2.is_staff %}Nope{% endif %}</p>
+                    </section>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+
+{% block vertical_row %}
+    <div class="col-md-4" align="center">
+        {% block vertical_navbar %}
+                <div class="well" >
+                  <h4 class="text-primary" ><b>Profile Picture</b></h4>
+                    <div class="row">
+                            <div class="col-lg-14" >
+                               <img src={{ MEDIA_ROOT }}/{{ image }} class="img-thumbnail" >
+                            </div>
+                    </div>
+                </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+    </div>
 {% endblock %}
 
-{% block content %}
-    <div id="w">
-    <div id="content1" class="clearfix">
-    <!-- <div id="userphoto"><img src="images/avatar.png" alt="default avatar"></div> --->
-
-    <section id="activity" >
-         <p class="activity"> <img src={{ MEDIA_URL }}/{{ image }}></p>
-        <p class="activity">Username - {{ user2.get_username }}</p>
-
-        <p class="activity">Full name - {{ user2.get_full_name }}</p>
-
-        <p class="activity">Email - {{ user2.email }}</p>
-
-        <p class="activity">Staff - {% if user2.is_staff %}Yep{% endif %}{% if not user2.is_staff %}Nope{% endif %}</p>
-
-    </section>
-    </div>
-    </div>
 {% endblock %}
 
 {% block Menu %}
     <li class="active"> <a href="/posts">Main</a> </li>
     <li><a href="/posts/logout">Logout</a></li>
 {% endblock %}
+
+{##}
+{#{% block vertical_row %}#}
+{#    <div class="col-md-5" align="center">#}
+{#        {% block vertical_navbar %}#}
+{#                <div class="well" >#}
+{#                  <h4 class="text-primary" ><b>Profile Picture</b></h4>#}
+{#                    <div class="row">#}
+{#                            <div class="col-lg-14" >#}
+{#                               <img src={{ MEDIA_URL }}/{{ image }} class="img-thumbnail" >#}
+{#                            </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#        {% endblock %}#}
+{#    </div>#}
+{#{% endblock %}#}
